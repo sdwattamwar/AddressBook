@@ -26,6 +26,10 @@ pipeline {
             steps {
             sh 'mvn clean package'
             }
-        }    
+        }   
+        stage('Deployment') {
+	       steps {
+           sh 'sshpass -p tomcat scp target/addressbook.war tomcat@172.31.95.241:/opt/tomcat/webapps'
+	}
     }
 }
